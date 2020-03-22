@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier"
+  ],
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-unused-vars": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "react/prop-types": "warn",
+    "jsx-a11y/label-has-associated-control": "warn"
+  }
+}
