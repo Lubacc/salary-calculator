@@ -1,11 +1,8 @@
 import React from 'react';
-import { addMonths, subMonths } from 'date-fns';
+import { addMonths } from 'date-fns';
 
-const getDaysInThisMonth = () => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  return new Date(year, month, 0).getDate();
+const getDaysBetweenSalary = (next, prev) => {
+  return ((next - prev) / (1000 * 60 * 60 * 24)).toFixed();
 };
 
 function Cashout({ location }) {
@@ -24,7 +21,12 @@ function Cashout({ location }) {
       : ((date - today) / (1000 * 60 * 60 * 24)).toFixed();
 
   const timeInSecs = Math.floor((today - prevSalaryDate) / 1000);
-  const salaryPerSecond = salaryPerMonth / getDaysInThisMonth() / 24 / 60 / 60;
+  const salaryPerSecond =
+    salaryPerMonth /
+    getDaysBetweenSalary(nextSalaryDate, prevSalaryDate) /
+    24 /
+    60 /
+    60;
   const moneyTillNow = salaryPerSecond * timeInSecs;
 
   return (
