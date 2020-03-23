@@ -1,5 +1,5 @@
 import React from 'react';
-import { addMonths } from 'date-fns';
+import { addMonths, subMonths } from 'date-fns';
 
 const getDaysInThisMonth = () => {
   const now = new Date();
@@ -16,18 +16,14 @@ function Cashout({ location }) {
 
   const monthToUse = today >= date ? 1 : 0;
   const nextSalaryDate = addMonths(date, monthToUse);
+  const prevSalaryDate = addMonths(date, monthToUse - 1);
 
-  const prevSalaryDate =
-    date.getDate() > today.getDate()
-      ? date.setMonth(date.getMonth() - 1)
-      : date;
+  const daysUntilNextPay =
+    today >= date
+      ? ((nextSalaryDate - prevSalaryDate) / (1000 * 60 * 60 * 24)).toFixed()
+      : ((date - today) / (1000 * 60 * 60 * 24)).toFixed();
 
-  const daysUntilNextPay = (
-    (nextSalaryDate.getTime() - prevSalaryDate.getTime()) /
-    (1000 * 60 * 60 * 24)
-  ).toFixed();
-
-  const timeInSecs = Math.floor((today.getTime() - date.getTime()) / 1000);
+  const timeInSecs = Math.floor((today - prevSalaryDate) / 1000);
   const salaryPerSecond = salaryPerMonth / getDaysInThisMonth() / 24 / 60 / 60;
   const moneyTillNow = salaryPerSecond * timeInSecs;
 
