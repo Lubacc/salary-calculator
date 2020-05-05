@@ -10,7 +10,7 @@
     "prettier/prettier": "warn",
     "no-unused-vars": "warn",
     "react/jsx-props-no-spreading": "warn",
-    "react/prop-types": "warn",
-    "jsx-a11y/label-has-associated-control": "warn"
+    "jsx-a11y/label-has-associated-control": 0,
+    "react/prop-types": 0
   }
 }

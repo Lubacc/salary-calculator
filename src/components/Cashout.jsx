@@ -1,5 +1,9 @@
 import React from 'react';
 import { addMonths } from 'date-fns';
+import ClockSVG from './assets/clock.svg';
+import MoneySVG from './assets/money.svg';
+import CalendarSVG from './assets/calendar.svg';
+import '../App.css';
 
 const getDaysBetweenSalary = (next, prev) => {
   return ((next - prev) / (1000 * 60 * 60 * 24)).toFixed();
@@ -30,14 +34,58 @@ function Cashout({ location }) {
   const moneyTillNow = salaryPerSecond * timeInSecs;
 
   return (
-    <div className="jumbotron jumbotron-fluid">
-      <div className="container">
-        <h1 className="display-4">How much you earn per second:</h1>
-        <p className="lead">{salaryPerSecond.toFixed(5)}</p>
-        <h1 className="display-4">Earned Money so far:</h1>
-        <p className="lead">{moneyTillNow.toFixed()}</p>
-        <h1 className="display-4">Days until next salary:</h1>
-        <p className="lead">{daysUntilNextPay}</p>
+    <div className="cashout">
+      <div className="row">
+        <div className="col-sm-12 col-lg-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">
+                {`$$ per second: 
+                ${salaryPerSecond.toFixed(5)}`}
+              </h5>
+              <p className="card-text">
+                <img
+                  style={{ width: '100px', height: '100px' }}
+                  src={ClockSVG}
+                  alt=""
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-sm-12 col-lg-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">
+                {`Earned $$ until now: ${moneyTillNow.toFixed()}`}
+              </h5>
+              <p className="card-text">
+                <img
+                  style={{ width: '100px', height: '100px' }}
+                  src={MoneySVG}
+                  alt=""
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-sm-12 col-lg-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">
+                {`Days until next pay: 
+                ${daysUntilNextPay}`}
+              </h5>
+              <p className="card-text">
+                <img
+                  style={{ width: '100px', height: '100px' }}
+                  src={CalendarSVG}
+                  alt=""
+                />
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
